@@ -125,27 +125,12 @@ public class Flight {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Flight [id=");
 		builder.append(id);
-		builder.append(", airlineId=");
-		builder.append(airlineId);
 		builder.append(", flightNumber=");
 		builder.append(flightNumber);
 		builder.append(", originAirportId=");
 		builder.append(originAirportId);
 		builder.append(", destinationAirportId=");
 		builder.append(destinationAirportId);
-		builder.append(", scheduledDepartureDate=");
-		builder.append(scheduledDepartureDate);
-		builder.append(", arrivalDate=");
-		builder.append(arrivalDate);
-		builder.append(", departureDelay=");
-		builder.append(departureDelay);
-		builder.append(", arrivalDelay=");
-		builder.append(arrivalDelay);
-		builder.append(", airTime=");
-		builder.append(airTime);
-		builder.append(", distance=");
-		builder.append(distance);
-		builder.append("]");
 		return builder.toString();
 	}
 }

@@ -3,6 +3,7 @@ package it.polito.tdp.flightdelays;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.flightdelays.model.Airline;
 import it.polito.tdp.flightdelays.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +13,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class FlightDelaysController {
+	
+	private Model model;
 
     @FXML
     private ResourceBundle resources;
@@ -23,7 +26,7 @@ public class FlightDelaysController {
     private TextArea txtResult;
 
     @FXML
-    private ComboBox<?> cmbBoxLineaAerea;
+    private ComboBox<Airline> cmbBoxLineaAerea;
 
     @FXML
     private Button caricaVoliBtn;
@@ -36,15 +39,31 @@ public class FlightDelaysController {
 
     @FXML
     void doCaricaVoli(ActionEvent event) {
-    		System.out.println("Carica voli!");
+    		Airline airline = this.cmbBoxLineaAerea.getValue();
+    		this.model.creaGrafo(airline);
+    		for(int i=0; i<10; i++) {
+    			txtResult.appendText("-" + this.model.getResult().get(i) + "\n");
+    		}
+    		
     }
 
     @FXML
     void doSimula(ActionEvent event) {
     		System.out.println("Simula!");
     }
+    
+    
 
-    @FXML
+    public Model getModel() {
+		return model;
+	}
+
+	public void setModel(Model model) {
+		this.model = model;
+		this.cmbBoxLineaAerea.getItems().addAll(this.model.getAllAirlines());
+	}
+
+	@FXML
     void initialize() {
         assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'FlightDelays.fxml'.";
         assert cmbBoxLineaAerea != null : "fx:id=\"cmbBoxLineaAerea\" was not injected: check your FXML file 'FlightDelays.fxml'.";
@@ -54,7 +73,5 @@ public class FlightDelaysController {
 
     }
     
-	public void setModel(Model model) {
-		// TODO Auto-generated method stub
-	}
+	
 }
